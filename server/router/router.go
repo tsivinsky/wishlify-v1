@@ -13,4 +13,5 @@ func Start(app *fiber.App) {
 
 	r.Post("/api/auth/register", handle.RegisterUser)
 	r.Post("/api/auth/login", handle.LoginUser)
+	r.Post("/api/auth/refresh-tokens", handle.RefreshTokens)
 }

@@ -12,4 +12,5 @@ func Start(app *fiber.App) {
 	r.Get("/", handle.IndexRoute)
 
 	r.Post("/api/auth/register", handle.RegisterUser)
+	r.Post("/api/auth/login", handle.LoginUser)
 }

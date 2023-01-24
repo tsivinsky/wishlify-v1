@@ -3,6 +3,7 @@ package handle
 import (
 	"wishlify/auth"
 	"wishlify/db"
+	"wishlify/lib"
 	"wishlify/types"
 	"wishlify/validation"
 
@@ -13,7 +14,7 @@ func RegisterUser(c *fiber.Ctx) error {
 	var body validation.RegisterUserBody
 
 	if err := c.BodyParser(&body); err != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error parsing request body")
+		return lib.ErrParsingRequest
 	}
 
 	errs := validation.ValidateRegisterBody(body)
@@ -23,7 +24,7 @@ func RegisterUser(c *fiber.Ctx) error {
 
 	hashedPassword, err := auth.HashPassword(body.Password)
 	if err != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error hashing password")
+		return lib.ErrHashingPassword
 	}
 
 	user := db.User{
@@ -34,12 +35,12 @@ func RegisterUser(c *fiber.Ctx) error {
 
 	tx := db.Db.Create(&user)
 	if tx.Error != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error creating new user")
+		return lib.ErrCreatingUser
 	}
 
 	accessToken, refreshToken, err := auth.GenerateBothTokens(user.ID)
 	if err != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error generating tokens")
+		return lib.ErrGeneratingTokens
 	}
 
 	return c.JSON(types.AuthResponse{

@@ -13,7 +13,7 @@ func GetUser(c *fiber.Ctx) error {
 	var user db.User
 	tx := db.Db.Where("id = ?", userId).First(&user)
 	if tx.Error != nil {
-		return types.MakeApiErrorResponse(c, 401, tx.Error.Error())
+		return types.MakeApiError(401, tx.Error.Error())
 	}
 
 	return c.JSON(user)

@@ -3,6 +3,7 @@ package handle
 import (
 	"wishlify/auth"
 	"wishlify/db"
+	"wishlify/lib"
 	"wishlify/types"
 	"wishlify/validation"
 
@@ -13,7 +14,7 @@ func LoginUser(c *fiber.Ctx) error {
 	var body validation.LoginUserBody
 
 	if err := c.BodyParser(&body); err != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error parsing request body")
+		return lib.ErrParsingRequest
 	}
 
 	errs := validation.ValidateLoginBody(body)
@@ -24,12 +25,12 @@ func LoginUser(c *fiber.Ctx) error {
 	var user db.User
 	tx := db.Db.Where("email = ?", body.Email).First(&user)
 	if tx.Error != nil {
-		return types.MakeApiErrorResponse(c, 500, tx.Error.Error())
+		return types.MakeApiError(500, tx.Error.Error())
 	}
 
 	accessToken, refreshToken, err := auth.GenerateBothTokens(user.ID)
 	if err != nil {
-		return types.MakeApiErrorResponse(c, 500, "Error generating tokens")
+		return lib.ErrGeneratingTokens
 	}
 
 	return c.JSON(types.AuthResponse{

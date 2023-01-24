@@ -11,18 +11,18 @@ import (
 func ValidateAuth(c *fiber.Ctx) error {
 	accessToken, err := auth.GetAccessTokenFromHeader(c)
 	if err != nil {
-		return types.MakeApiErrorResponse(c, 401, err.Error())
+		return types.MakeApiError(401, err.Error())
 	}
 
 	userId, err := auth.ValidateAccessToken(accessToken)
 	if err != nil {
-		return types.MakeApiErrorResponse(c, 401, err.Error())
+		return types.MakeApiError(401, err.Error())
 	}
 
 	var user db.User
 	tx := db.Db.Where("id = ?", userId).First(&user)
 	if tx.Error != nil {
-		return types.MakeApiErrorResponse(c, 401, err.Error())
+		return types.MakeApiError(401, err.Error())
 	}
 
 	c.Locals("userId", userId)

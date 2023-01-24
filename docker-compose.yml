@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./server
+    restart: always
+    ports:
+      - 5000:5000
+    container_name: wishlify-backend
+    env_file:
+      - .env

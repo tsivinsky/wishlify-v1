@@ -18,5 +18,6 @@ func Start(app *fiber.App) {
 
 	r.Get("/api/user", middleware.ValidateAuth, handle.GetUser)
 
+	r.Get("/api/wishlists", middleware.ValidateAuth, handle.GetUserWishlists)
 	r.Post("/api/wishlists", middleware.ValidateAuth, handle.CreateWishlists)
 }

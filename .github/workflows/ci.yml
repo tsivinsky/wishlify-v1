@@ -15,9 +15,9 @@ jobs:
       - name: Install dependencies
         working-directory: server
         run: go mod download && go mod verify
-      - name: Build
-        working-directory: server
-        run: go build -v .
       - name: Test
         working-directory: server
         run: go test -v ./...
+      - name: Build
+        working-directory: server
+        run: go build -v .

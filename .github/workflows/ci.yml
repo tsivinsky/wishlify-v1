@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.19"
+      - name: Install dependencies
+        working-directory: server
+        run: go mod install && go mod verify
+      - name: Build
+        working-directory: server
+        run: go build -v .
+      - name: Test
+        working-directory: server
+        run: go test -v ./...

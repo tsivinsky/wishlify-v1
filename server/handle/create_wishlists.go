@@ -33,6 +33,7 @@ func CreateWishlist(c *fiber.Ctx) error {
 	wishlist := db.Wishlist{
 		Name:        body.Name,
 		DisplayName: displayName,
+		Private:     body.Private,
 		Products:    []db.Product{},
 		User:        user,
 		UserId:      user.ID,

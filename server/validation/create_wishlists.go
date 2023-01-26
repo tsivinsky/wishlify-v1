@@ -7,7 +7,8 @@ import (
 )
 
 type CreateWishlistBody struct {
-	Name string `json:"name" validate:"required"`
+	Name    string `json:"name" validate:"required"`
+	Private bool   `json:"private"`
 }
 
 func ValidateCreateWishlistBody(body CreateWishlistBody) []*types.ApiFormError {

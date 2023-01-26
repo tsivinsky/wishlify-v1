@@ -6,6 +6,8 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    defaults:
+      working-directory: server
     steps:
       - uses: actions/checkout@v2
       - name: Setup Go
@@ -13,11 +15,8 @@ jobs:
         with:
           go-version: "1.19"
       - name: Install dependencies
-        working-directory: server
         run: go mod download && go mod verify
       - name: Test
-        working-directory: server
         run: go test -v ./...
       - name: Build
-        working-directory: server
         run: go build -v .

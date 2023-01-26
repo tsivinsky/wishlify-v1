@@ -26,7 +26,7 @@ func Start() error {
 		return err
 	}
 
-	err = Db.AutoMigrate(&User{})
+	err = Db.AutoMigrate(&User{}, &Wishlist{}, &Product{})
 
 	return err
 }

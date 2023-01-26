@@ -6,11 +6,11 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-type CreateWishlistsBody struct {
+type CreateWishlistBody struct {
 	Name string `json:"name" validate:"required"`
 }
 
-func ValidateCreateWishlistsBody(body CreateWishlistsBody) []*types.ApiFormError {
+func ValidateCreateWishlistBody(body CreateWishlistBody) []*types.ApiFormError {
 	var errs []*types.ApiFormError
 
 	err := Valid.Struct(body)

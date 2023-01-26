@@ -10,13 +10,13 @@ import (
 )
 
 func CreateWishlist(c *fiber.Ctx) error {
-	var body validation.CreateWishlistsBody
+	var body validation.CreateWishlistBody
 
 	if err := c.BodyParser(&body); err != nil {
 		return lib.ErrParsingRequest
 	}
 
-	errs := validation.ValidateCreateWishlistsBody(body)
+	errs := validation.ValidateCreateWishlistBody(body)
 	if len(errs) > 0 {
 		return types.MakeApiFormErrorResponse(c, errs)
 	}

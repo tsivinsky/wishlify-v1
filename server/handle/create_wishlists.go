@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func CreateWishlists(c *fiber.Ctx) error {
+func CreateWishlist(c *fiber.Ctx) error {
 	var body validation.CreateWishlistsBody
 
 	if err := c.BodyParser(&body); err != nil {

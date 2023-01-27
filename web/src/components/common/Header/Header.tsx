@@ -14,7 +14,7 @@ export const Header = () => {
     <header className="h-header flex items-center">
       <div className="container mx-auto px-2 md:px-0 flex justify-between items-center w-full">
         <Link href="/">
-          <h1 className="text-3xl">Wishlify</h1>
+          <h1 className="text-3xl font-semibold">Wishlify</h1>
         </Link>
         {user ? (
           <div>

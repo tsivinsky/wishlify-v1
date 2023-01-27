@@ -35,6 +35,8 @@ func RefreshTokens(c *fiber.Ctx) error {
 		return lib.ErrGeneratingTokens
 	}
 
+	lib.SaveTokensInCookies(c, accessToken, refreshToken)
+
 	return c.JSON(types.AuthResponse{
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,

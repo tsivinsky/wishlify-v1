@@ -2,6 +2,12 @@
 module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        light: "var(--color-light)",
+        dark: "var(--color-dark)",
+        primary: "var(--color-primary)",
+      },
+    },
   },
 };

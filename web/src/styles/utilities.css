@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@layer utilities {
+  .h-header {
+    height: var(--header-height);
+  }
+
+  .min-h-screen-without-header {
+    min-height: calc(100vh - var(--header-height));
+  }
+}

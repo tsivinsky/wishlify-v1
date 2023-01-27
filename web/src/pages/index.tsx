@@ -19,7 +19,7 @@ const IndexPage: Page = () => {
 
   return (
     <div>
-      <h1>Привет, {user?.username}!</h1>
+      <h1 className="text-xl font-medium mb-6">Привет, {user?.username}!</h1>
 
       <WishlistList wishlists={wishlists} isLoading={isLoading} />
     </div>

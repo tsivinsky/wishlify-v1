@@ -1,10 +1,10 @@
 import { GetServerSideProps } from "next";
 
-import { createAxios } from "@/lib/axios";
 import { getServerCookies } from "@/lib/getServerCookies";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
 
 import { useUserQuery } from "@/features/user/useUserQuery";
+import { makeServerRequest } from "@/utils/makeServerRequest";
 
 import { PrimaryLayout } from "@/layouts/PrimaryLayout";
 
@@ -34,9 +34,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    ["user"],
-    async () => (await createAxios(accessToken).get("/api/user")).data
+  await queryClient.prefetchQuery(["user"], () =>
+    makeServerRequest("/api/user", accessToken)
   );
 
   return {

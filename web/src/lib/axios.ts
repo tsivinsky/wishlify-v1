@@ -24,13 +24,3 @@ $axios.interceptors.request.use(
     throw error;
   }
 );
-
-export const createAxios = (accessToken: string) => {
-  return Axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-};

@@ -1,11 +1,5 @@
 import type { ReactNode } from "react";
 
-export type LayoutProps<TParams = {}> = {
+export type LayoutProps<TProps = {}> = TProps & {
   children: ReactNode;
-  params: TParams;
-};
-
-export type PageProps<TParams = {}, TSearchParams = {}> = {
-  params: TParams;
-  searchParams: TSearchParams;
 };

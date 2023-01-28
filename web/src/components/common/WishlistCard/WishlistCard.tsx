@@ -28,7 +28,6 @@ export const WishlistCard: React.FC<WishlistCardProps> = ({
   return (
     <Link href={`/${user?.username}/${wishlist.displayName}`} passHref>
       <Panel
-        as="a"
         className={clsx("w-full flex flex-col justify-between", className)}
         {...props}
       >

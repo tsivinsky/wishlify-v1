@@ -24,9 +24,7 @@ const IndexPage: Page = () => {
       <div className="flex justify-between items-center gap-2 flex-wrap mb-6">
         <h1 className="text-xl font-medium">Привет, {user?.username}!</h1>
         <Link href="/new" passHref>
-          <Button as="a" className="w-full sm:w-auto block">
-            Создать вишлист
-          </Button>
+          <Button className="w-full sm:w-auto block">Создать вишлист</Button>
         </Link>
       </div>
 

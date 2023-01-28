@@ -1,3 +1,5 @@
+import React from "react";
+
 import Link from "next/link";
 
 import { useLogoutMutation } from "@/features/auth/useLogoutMutation";
@@ -5,7 +7,11 @@ import { useUserQuery } from "@/features/user/useUserQuery";
 
 import { Button } from "@/components/ui/Button";
 
-export const Header = () => {
+export type HeaderProps = {
+  withUserMenu?: boolean;
+};
+
+export const Header: React.FC<HeaderProps> = ({ withUserMenu = true }) => {
   const { user } = useUserQuery();
 
   const logoutMutation = useLogoutMutation();
@@ -16,16 +22,17 @@ export const Header = () => {
         <Link href="/">
           <h1 className="text-3xl font-semibold">Wishlify</h1>
         </Link>
-        {user ? (
-          <div>
-            <Button onClick={() => logoutMutation.mutate()}>Выйти</Button>
-          </div>
-        ) : (
-          <nav className="flex items-center gap-4">
-            <Link href="/join">Зарегистрироваться</Link>
-            <Link href="/signin">Войти</Link>
-          </nav>
-        )}
+        {withUserMenu &&
+          (user ? (
+            <div>
+              <Button onClick={() => logoutMutation.mutate()}>Выйти</Button>
+            </div>
+          ) : (
+            <nav className="flex items-center gap-4">
+              <Link href="/join">Зарегистрироваться</Link>
+              <Link href="/signin">Войти</Link>
+            </nav>
+          ))}
       </div>
     </header>
   );

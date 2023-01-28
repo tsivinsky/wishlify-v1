@@ -10,3 +10,8 @@
 *::after {
   color: var(--color-dark);
 }
+
+input,
+textarea {
+  accent-color: var(--color-primary);
+}

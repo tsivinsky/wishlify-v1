@@ -5,7 +5,11 @@
 .variantPrimary {
   @apply border-primary text-primary;
 
-  &:hover {
+  &:disabled {
+    @apply opacity-40;
+  }
+
+  &:not(:disabled):hover {
     @apply bg-primary text-light;
   }
 

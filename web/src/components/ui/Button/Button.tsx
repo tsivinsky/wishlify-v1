@@ -7,6 +7,7 @@ import type {
   PolymorphicPropsWithoutRef,
 } from "react-polymorphic-types";
 
+import { Loader } from "../Loader";
 import classes from "./Button.module.css";
 
 export const ButtonDefaultElement = "button";
@@ -26,6 +27,8 @@ export type ButtonSize = keyof typeof sizeClasses;
 export type ButtonOwnProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  loading?: boolean;
+  disabled?: boolean;
 };
 
 export type ButtonProps<
@@ -43,7 +46,9 @@ export const Button: ButtonType = React.forwardRef(
       as,
       variant = "primary",
       size = "medium",
+      loading,
       className,
+      disabled,
       children,
       ...props
     }: PolymorphicPropsWithoutRef<ButtonOwnProps, E>,
@@ -60,9 +65,10 @@ export const Button: ButtonType = React.forwardRef(
           sizeClasses[size],
           className
         )}
+        disabled={loading ?? disabled}
         {...props}
       >
-        {children}
+        {loading ? <Loader loading color="var(--color-primary)" /> : children}
       </Element>
     );
   }

@@ -4,6 +4,20 @@
 
 .input {
   @apply border border-primary rounded-md py-1 px-2;
+
+  &:disabled {
+    @apply bg-gray-200 border-gray-300 text-gray-600;
+  }
+
+  &.error {
+    @apply border-error;
+  }
+}
+
+.label {
+  &.error {
+    @apply text-error;
+  }
 }
 
 .message {
@@ -11,5 +25,5 @@
 }
 
 .error {
-  @apply text-red-600;
+  @apply text-error;
 }

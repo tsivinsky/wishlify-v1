@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 
 import { getServerCookies } from "@/lib/getServerCookies";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
@@ -8,6 +9,7 @@ import { useWishlistsQuery } from "@/features/wishlists/useWishlistsQuery";
 import { makeServerRequest } from "@/utils/makeServerRequest";
 
 import { WishlistList } from "@/components/common/WishlistList";
+import { Button } from "@/components/ui/Button";
 import { PrimaryLayout } from "@/layouts/PrimaryLayout";
 
 import { Page } from "@/types/page";
@@ -19,7 +21,14 @@ const IndexPage: Page = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-medium mb-6">Привет, {user?.username}!</h1>
+      <div className="flex justify-between items-center gap-2 flex-wrap mb-6">
+        <h1 className="text-xl font-medium">Привет, {user?.username}!</h1>
+        <Link href="/new" passHref>
+          <Button as="a" className="w-full sm:w-auto block">
+            Создать вишлист
+          </Button>
+        </Link>
+      </div>
 
       <WishlistList wishlists={wishlists} isLoading={isLoading} />
     </div>

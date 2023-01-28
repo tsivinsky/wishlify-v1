@@ -12,3 +12,5 @@ export type Wishlist = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CreateWishlistData = Pick<Wishlist, "name" | "private">;

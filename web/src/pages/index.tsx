@@ -33,7 +33,10 @@ const IndexPage: Page = () => {
         </Link>
       </div>
 
-      <WishlistList wishlists={wishlists} isLoading={isLoading} />
+      <div>
+        <h2 className="mb-2 border-b">Ваши вишлисты</h2>
+        <WishlistList wishlists={wishlists} isLoading={isLoading} />
+      </div>
     </div>
   );
 };

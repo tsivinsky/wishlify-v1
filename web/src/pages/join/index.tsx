@@ -103,7 +103,7 @@ const JoinPage: Page = () => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { accessToken, refreshToken } = getServerCookies(ctx);
 
-  if (accessToken || refreshToken) {
+  if (accessToken && refreshToken) {
     return {
       redirect: {
         destination: "/",

@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { getServerCookies } from "@/lib/getServerCookies";
@@ -56,6 +57,10 @@ const NewWishlistPage: Page<NewWishlistPageProps> = ({ initialName }) => {
 
   return (
     <div>
+      <Head>
+        <title>Создать новый вишлист</title>
+      </Head>
+
       <h1 className="text-2xl font-medium mb-4">Создать новый вишлист</h1>
       <form onSubmit={onSubmit} className="flex flex-col gap-4 items-start">
         <div className="flex items-center gap-2">

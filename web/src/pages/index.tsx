@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 
 import { getServerCookies } from "@/lib/getServerCookies";
@@ -21,6 +22,10 @@ const IndexPage: Page = () => {
 
   return (
     <div>
+      <Head>
+        <title>Главная</title>
+      </Head>
+
       <div className="flex justify-between items-center gap-2 flex-wrap mb-6">
         <h1 className="text-xl font-medium">Привет, {user?.username}!</h1>
         <Link href="/new" passHref>

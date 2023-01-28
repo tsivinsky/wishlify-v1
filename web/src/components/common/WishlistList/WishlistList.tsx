@@ -1,5 +1,7 @@
 import React from "react";
 
+import Link from "next/link";
+
 import clsx from "clsx";
 
 import { Loader } from "@/components/ui/Loader";
@@ -28,9 +30,22 @@ export const WishlistList: React.FC<WishlistListProps> = ({
       {...props}
     >
       {wishlists ? (
-        wishlists.map((wishlist) => (
-          <WishlistCard key={wishlist.id} wishlist={wishlist} />
-        ))
+        wishlists.length > 0 ? (
+          wishlists.map((wishlist) => (
+            <WishlistCard key={wishlist.id} wishlist={wishlist} />
+          ))
+        ) : (
+          <div>
+            У вас нет вишлистов.{" "}
+            <Link
+              href="/new"
+              className="underline hover:no-underline focus:no-underline hover:opacity-60 focus:opacity-60"
+            >
+              Создайте новый
+            </Link>
+            , чтобы увидеть его здесь
+          </div>
+        )
       ) : (
         <Loader loading={isLoading} />
       )}

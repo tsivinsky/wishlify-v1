@@ -8,6 +8,16 @@
   &:disabled {
     @apply bg-gray-200 border-gray-300 text-gray-600;
   }
+
+  &.error {
+    @apply border-error;
+  }
+}
+
+.label {
+  &.error {
+    @apply text-error;
+  }
 }
 
 .message {
@@ -15,5 +25,5 @@
 }
 
 .error {
-  @apply text-red-600;
+  @apply text-error;
 }

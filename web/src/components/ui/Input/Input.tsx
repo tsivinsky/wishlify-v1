@@ -31,14 +31,21 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={clsx(classes.root, className)}>
         {label && (
-          <label className={clsx(labelClassName)} htmlFor={id}>
+          <label
+            className={clsx(classes.label, labelClassName, {
+              [classes.error]: !!error,
+            })}
+            htmlFor={id}
+          >
             {label}
           </label>
         )}
         <input
           id={id}
           ref={ref}
-          className={clsx(classes.input, inputClassName)}
+          className={clsx(classes.input, inputClassName, {
+            [classes.error]: !!error,
+          })}
           {...props}
         />
         <AnimatePresence mode="wait">

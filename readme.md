@@ -38,9 +38,9 @@ Add these in root `.env` file
 POSTGRES_USER=someuser
 POSTGRES_PASSWORD=someuser_password
 POSTGRES_DB=somedbname
-DATABASE_HOST=db            // variable for backend to connect to database (in development name of postgres docker service)
-JWT_SECRET=topsecret        // secret string for signing jwt tokens
-APP_HOST=localhost          // variable for backend to use as domain for authentication cookies
+DATABASE_HOST=db            # variable for backend to connect to database (in development name of postgres docker service)
+JWT_SECRET=topsecret        # secret string for signing jwt tokens
+APP_HOST=localhost          # variable for backend to use as domain for authentication cookies
 ```
 
 ### Web App
@@ -48,5 +48,5 @@ APP_HOST=localhost          // variable for backend to use as domain for authent
 Add these in `.env` file inside `web` directory
 
 ```bash
-NEXT_PUBLIC_API_URL=http://localhost:5000           // url for app to connect to backend
+NEXT_PUBLIC_API_URL=http://localhost:5000           # url for app to connect to backend
 ```

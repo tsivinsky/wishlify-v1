@@ -21,7 +21,7 @@ func CreateWishlist(c *fiber.Ctx) error {
 		return types.MakeApiFormErrorResponse(c, errs)
 	}
 
-	userId := c.Locals("userId")
+	userId := c.Locals("userId").(uint)
 	var user db.User
 	tx := db.Db.Where("id = ?", userId).First(&user)
 	if tx.Error != nil {
@@ -29,6 +29,12 @@ func CreateWishlist(c *fiber.Ctx) error {
 	}
 
 	displayName := lib.CreateWishlistDisplayName(body.Name)
+
+	count := db.Db.Where("user_id = ? AND display_name = ?", userId, displayName).First(&db.Wishlist{}).RowsAffected
+	if count > 0 {
+		_errs := []*types.ApiFormError{types.MakeApiFormError("name", "У вас уже есть вишлист с похожим названием")}
+		return types.MakeApiFormErrorResponse(c, _errs)
+	}
 
 	wishlist := db.Wishlist{
 		Name:        body.Name,

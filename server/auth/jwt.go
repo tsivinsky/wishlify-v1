@@ -23,7 +23,7 @@ type AuthTokenClaims struct {
 	UserId uint `json:"userId"`
 }
 
-func getKey(token *jwt.Token) (interface{}, error) {
+func GetKey(token *jwt.Token) (interface{}, error) {
 	_, ok := token.Method.(*jwt.SigningMethodHMAC)
 	if !ok {
 		return nil, errors.New("Invalid token")
@@ -79,7 +79,7 @@ func GenerateBothTokens(userId uint) (string, string, error) {
 func ValidateRefreshToken(refreshToken string) (uint, error) {
 	var claims AuthTokenClaims
 
-	token, err := jwt.ParseWithClaims(refreshToken, &claims, getKey)
+	token, err := jwt.ParseWithClaims(refreshToken, &claims, GetKey)
 	if err != nil {
 		return 0, err
 	}
@@ -94,7 +94,7 @@ func ValidateRefreshToken(refreshToken string) (uint, error) {
 func ValidateAccessToken(accessToken string) (uint, error) {
 	var claims AuthTokenClaims
 
-	token, err := jwt.ParseWithClaims(accessToken, &claims, getKey)
+	token, err := jwt.ParseWithClaims(accessToken, &claims, GetKey)
 	if err != nil {
 		return 0, err
 	}

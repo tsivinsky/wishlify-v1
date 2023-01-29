@@ -5,12 +5,12 @@ import (
 	"strings"
 )
 
-var re = regexp.MustCompile(`[^A-z|0-9|А-я]`)
+var re = regexp.MustCompile(`[^A-z|0-9|А-я]+`)
 
 func CreateWishlistDisplayName(name string) string {
 	lowerCased := strings.ToLower(name)
 
-	displayName := re.ReplaceAll([]byte(lowerCased), []byte("_"))
+	displayName := re.ReplaceAll([]byte(lowerCased), []byte("-"))
 
 	return string(displayName)
 }

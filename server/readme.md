@@ -21,12 +21,12 @@ SQL database
 ## File Structure
 
 ```txt
-  auth/             // utility functions for authentication stuff
-  db/               // Db variable and db models
-  handle/           // controller functions for router
-  lib/              // kinda like utility functions
-  middleware/       // functions for running before end controllers in router
-  router/           // root router stuff
-  types/            // App-wide types
-  validation/       // functions and types for validating incoming requests
+auth/             // utility functions for authentication stuff
+db/               // Db variable and db models
+handle/           // controller functions for router
+lib/              // kinda like utility functions
+middleware/       // functions for running before end controllers in router
+router/           // root router stuff
+types/            // App-wide types
+validation/       // functions and types for validating incoming requests
 ```

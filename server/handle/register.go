@@ -28,14 +28,25 @@ func RegisterUser(c *fiber.Ctx) error {
 	}
 
 	user := db.User{
-		Email:    body.Email,
-		Username: body.Username,
-		Password: hashedPassword,
+		Email:       body.Email,
+		Username:    body.Username,
+		Password:    hashedPassword,
+		ConfirmedAt: nil,
 	}
 
 	tx := db.Db.Create(&user)
 	if tx.Error != nil {
 		return lib.ErrCreatingUser
+	}
+
+	confirmToken, err := auth.GenerateConfirmToken(user.ID)
+	if err != nil {
+		return lib.ErrGeneratingConfirmToken
+	}
+
+	err = lib.SendConfirmationEmail(user.Email, confirmToken)
+	if err != nil {
+		return lib.ErrSendingConfirmEmail
 	}
 
 	accessToken, refreshToken, err := auth.GenerateBothTokens(user.ID)

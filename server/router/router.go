@@ -17,6 +17,8 @@ func Start(app *fiber.App) {
 	r.Post("/api/auth/refresh-tokens", handle.RefreshTokens)
 	r.Get("/api/auth/logout", middleware.ValidateAuth, handle.LogoutUser)
 
+	r.Get("/confirm-email", handle.ConfirmUserEmail)
+
 	r.Get("/api/user", middleware.ValidateAuth, handle.GetUser)
 
 	r.Get("/api/wishlists", middleware.ValidateAuth, handle.GetUserWishlists)

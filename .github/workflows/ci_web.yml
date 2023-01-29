@@ -7,7 +7,7 @@ on:
       - "master"
   pull_request:
     paths:
-      - ./web
+      - "web/**"
 
 jobs:
   CI:

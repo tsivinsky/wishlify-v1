@@ -1,7 +1,6 @@
 package handle
 
 import (
-	"database/sql"
 	"wishlify/auth"
 	"wishlify/db"
 	"wishlify/lib"
@@ -32,7 +31,7 @@ func RegisterUser(c *fiber.Ctx) error {
 		Email:       body.Email,
 		Username:    body.Username,
 		Password:    hashedPassword,
-		ConfirmedAt: sql.NullTime{Valid: false},
+		ConfirmedAt: nil,
 	}
 
 	tx := db.Db.Create(&user)

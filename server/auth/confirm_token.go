@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"errors"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -29,4 +30,19 @@ func GenerateConfirmToken(userId uint) (string, error) {
 	ss, err := token.SignedString([]byte(JWTSecret))
 
 	return ss, err
+}
+
+func ValidateConfirmToken(confirmToken string) (uint, error) {
+	var claims ConfirmTokenClaims
+
+	token, err := jwt.ParseWithClaims(confirmToken, &claims, GetKey)
+	if err != nil {
+		return 0, err
+	}
+
+	if !token.Valid {
+		return 0, errors.New("Invalid confirm token")
+	}
+
+	return claims.UserId, nil
 }

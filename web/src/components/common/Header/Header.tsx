@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({ withUserMenu = true }) => {
 
   return (
     <header className="h-header flex items-center">
-      <div className="container mx-auto px-2 md:px-0 flex justify-between items-center w-full">
+      <div className="max-w-[1640px] mx-auto px-2 md:px-0 flex justify-between items-center w-full">
         <Link href="/">
           <h1 className="text-3xl font-semibold">Wishlify</h1>
         </Link>

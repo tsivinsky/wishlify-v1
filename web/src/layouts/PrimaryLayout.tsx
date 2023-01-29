@@ -15,7 +15,7 @@ export const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({
   return (
     <>
       <Header {...headerProps} />
-      <main className="min-h-screen-without-header container mx-auto px-2 md:px-0">
+      <main className="min-h-screen-without-header max-w-[1640px] mx-auto px-2 md:px-0">
         {children}
       </main>
     </>

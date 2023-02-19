@@ -2,8 +2,6 @@
 
 ## Docs for each part of Wishlify
 
-### [Web App](./web/readme.md)
-
 ### [Backend](./server/readme.md)
 
 ## How to run in development
@@ -12,12 +10,6 @@
 
 ```bash
 make dev
-```
-
-### Web App
-
-```bash
-cd web && npm run dev
 ```
 
 ## How to run in production
@@ -49,12 +41,4 @@ EMAIL_USER="email user"
 EMAIL_PASSWORD="password for this user"
 EMAIL_HOST="email service host"
 EMAIL_PORT="email service port"
-```
-
-### Web App
-
-Add these in `.env` file inside `web` directory
-
-```bash
-NEXT_PUBLIC_API_URL=http://localhost:5000           # url for app to connect to backend
 ```

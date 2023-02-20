@@ -1,0 +1,15 @@
+.root {
+  @apply flex items-center gap-1;
+}
+
+.label {
+  @apply select-none text-sm cursor-pointer;
+
+  &.error {
+    @apply text-error;
+  }
+}
+
+.input {
+  @apply cursor-pointer;
+}

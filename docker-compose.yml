@@ -23,6 +23,15 @@ services:
     depends_on:
       - db
 
+  web:
+    build: ./web
+    restart: always
+    ports:
+      - 3000:3000
+    container_name: wishlify-web
+    depends_on:
+      - backend
+
   nginx:
     image: nginx:latest
     ports:
@@ -30,6 +39,7 @@ services:
       - 443:443
     restart: always
     depends_on:
+      - web
       - backend
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
